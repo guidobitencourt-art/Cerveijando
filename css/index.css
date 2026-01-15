@@ -1,4 +1,17 @@
+/* Descripción: Hoja de estilos principal para el sitio web de cultura cervecera.
+Estructura general:
+    - Importaciones y Variables
+    - Reset y Estilos Base
+    - Componentes Reutilizables (Botones, Grillas, Tipografía)
+    - Bloques de la Página (Header, Banner, Escuelas, Estilos, Contacto, Curiosidades, Footer)
+    - Estados de Animación
+*/
+
+/* --- IMPORTACIONES --- */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* --- RESET Y ESTILOS BASE --- */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +24,6 @@ img {
 
 ul, ol, li {
     list-style: none;
-
 }
 
 a {
@@ -19,11 +31,9 @@ a {
     color: inherit;
 }
 
-/* ------------------------ */
-
+/* --- VARIABLES (CUSTOM PROPERTIES) --- */
 :root {
-    /* Fonts */
-
+    /* Fuentes */
     --f-heading-xl: normal clamp(3rem, 5vw, 4rem) "Open Sans";
     --f-heading-lg: normal 2em "Open Sans";
     --f-heading-md: normal 1.5em "Open Sans";
@@ -31,128 +41,86 @@ a {
     --f-body: normal .9375em "Poppins";
     --f-link: 500 .9375em "Poppins";
 
-    /* Colors */
-
+    /* Colores */
     --c-text: #1f1f1f;
     --c-light: #EDB100;
     --c-primary: #F8F6F2;
 
-    /* Spacings */
+    /* Espaciados */
     --s-xl: 4rem;
     --s-lg: 3rem;
     --s-md: 2rem;
     --s-sm: 1rem;
     --s-xs: .5rem;
 
-    /* Sizes */
-
+    /* Tamaños */
     --mw-lg: 60.25rem;
 
-    /* Radius */
+    /* Bordes */
     --r-xl: 6rem;
     --r-md: 1.25rem;
     --r-sm: .3125rem;
-
-    
-}
-.estilos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
-    justify-content: center;
 }
 
-.card-cerveza {
-    border: 1px solid var(--c-light);
-    border-radius: 8px;
-    padding: 1.5rem;
-    width: 300px;
-    text-align: center;
-    transition: transform 0.3s ease; /* Transição simples */
-}
+/* --- COMPONENTES Y TIPOGRAFÍA --- */
+.text--xl { font: var(--f-heading-xl); }
+.text--lg { font: var(--f-heading-lg); }
+.text--md { font: var(--f-heading-md); }
+.text--sm { font: var(--f-heading-sm); }
+.body, p { font: var(--f-body); }
+.link { font: var(--f-link); }
 
-.card-cerveza:hover {
-    transform: scale(1.05);
-}
-
-.card-cerveza-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-    /* Elements */
-
-
-.text--xl {
-    font:var(--f-heading-xl);
-}
-.text--lg {
-    font: var(--f-heading-lg);
-}
-.text--md {
-    font: var(--f-heading-md);
-}
-.text--sm {
-    font: var(--f-heading-sm);
-}
-.body, p {
-    font: var(--f-body);
-}
-.link {
-    font: var(--f-link);
-}
-.btn {
-    font: var(--f-link);
-    background-color: var(--c-light);
-    color: var(--c-primary);
-    
-    padding: var(--s-xs) var(--s-md);
-    border-radius: var(--r-xl);
-    transition: 500ms; 
-}
-
-.btn:hover {
-    transform: scale(120%);
+.container {
+    max-width: var(--mw-lg);
+    margin: auto;
 }
 
 .section {
     padding: var(--s-xl) var(--s-sm);
 }
-.container {
-    max-width: var(--mw-lg);
-    margin: auto;
+
+/* Bloque: Botones principales con efecto de escala */
+.btn {
+    font: var(--f-link);
+    background-color: var(--c-light);
+    color: var(--c-primary);
+    padding: var(--s-xs) var(--s-md);
+    border-radius: var(--r-xl);
+    transition: 500ms;
+    display: inline-block;
+
+    &:hover {
+        transform: scale(1.2);
+    }
 }
+
+/* Bloque: Contenedores flexibles */
 .flex-row {
     display: flex;
     flex-direction: row;
     padding: var(--s-sm);
     gap: var(--s-sm);  
-
 }
+
 .flex-column {
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: var(--s-sm);
     gap: var(--s-sm);
-    
 }
 
+/* Elemento: Bloque de texto con anidamiento para división e imagen */
 .text-block {
     justify-content: center;
     align-items: center;
     gap: var(--s-lg);
 
-    &.div {
-        flex: 1 0 0;
-    }
-
-    &.img {
-        flex: 1 0 0;
-    }
+    &.div { flex: 1 0 0; }
+    &.img { flex: 1 0 0; }
 }
 
+/* Elemento: Estilos para campos de formulario */
 input, select {
     background-color: var(--c-primary);
     border: none;
@@ -160,16 +128,16 @@ input, select {
     padding: 1rem 1.18rem;
     border-radius: var(--r-xl);
 
+    &[type="submit"] {
+        background-color: var(--c-light);
+        color: var(--c-primary);
+        cursor: pointer;
+    }
 }
 
-input[type="submit"] {
-    background-color: var(--c-light);
-    color: var(--c-primary);
-}
+/* --- BLOQUES DE LA PÁGINA --- */
 
-/*-----------------------*/
-/* Header */
-
+/* Bloque: Header y navegación */
 header {
     background-color: #FFF5D4;
     display: flex;
@@ -178,111 +146,76 @@ header {
     align-items: center;
 
     & .logo {
-
         max-width: 12.5rem; 
-        
     }
+
     & nav {
-        
-        
-        
         & ul {
             display: flex;
-            gap: var(--s-md) ;
-            
-
-            
-
-            
+            gap: var(--s-md);
         }
     }
 }
-/* Header */
 
-/* Banner */
-
+/* Bloque: Banner de hero con fondo de imagen y gradiente */
 .banner {
-
     color: var(--c-primary);
     padding: 0 var(--s-xs);
-    
 
     & .banner__background {
-        background: linear-gradient(rgba(0, 0, 0, 0.55)),
-        url('../media/imagem\ banner.jpg');
+        background: linear-gradient(rgba(0, 0, 0, 0.55)), url('../media/imagem banner.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        
-
         min-height: 80vh;
-
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: var(--r-sm);
-        
 
-        & .banner__block{
-
-                width: 100%;
-            
+        & .banner__block {
+            width: 100%;
         }
     }
-    
 }
-/* Banner */
 
-/* Escuelas */
-
+/* Bloque: Sección de escuelas con efectos de sombra */
 .school {
-
     & .school__block {
-        
-    
         align-items: center;
         flex-wrap: wrap;
         gap: var(--s-sm);
-        
-
-       
-        
 
         & .school__img {
             flex: 1 0 350px;
-            
-            
-
-            & img{
+            & img {
                 border-radius: var(--r-md);
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-                
             }
-            
-            
         }
-        & .school__content{
-            
+
+        & .school__content {
             flex: 1 0 350px;
             gap: var(--s-xs);
             border-radius: var(--r-md);
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-            
-            
         }
     }
-
-
 }
-/* Escuelas */
 
-/* Estilos */
-
-.titulo{
-    text-align: center;      
+/* Bloque: Sección de estilos y tarjetas de cerveza */
+.titulo {
+    text-align: center; 
     padding-top: 3.125rem;       
-    padding-bottom: 1.25rem;    
+    padding-bottom: 1.25rem;
+}
 
+.estilos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    justify-content: center;
 }
 
 .card-cerveza {
@@ -294,17 +227,23 @@ header {
     text-align: center;
     transition: 0.3s; 
     margin: .9375rem;
-   
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    }
+
+    & h2 {
+        font-size: 1.2rem;
+        color: var(--c-text);
+    }
+
+    & .detalhes p {
+        margin: 5px 0;
+        font-size: 0.9rem;
+    }
 }
 
-
-/* Efeito ao passar o mouse (Interação Obrigatória) */
-.card-cerveza:hover {
-    border-color: var(--c-light);
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1); /* Sombra leve */
-}
-
-/* Ajuste da imagem dentro do card */
 .foto-cerveza-img {
     max-width: 100%;
     height: auto;
@@ -313,97 +252,124 @@ header {
     margin-bottom: 10px;
 }
 
-/* Estilo dos textos internos */
-.card-cerveza h2 {
-    font-size: 1.2rem;
-    color: var(--c-text);
-}
-
-.detalhes p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-}
-
-
-/* Curiosidades */
-.curiosidades{
-
-        & .curiosidades_container{
-            display: flex;
-            
-            
-           
-
-            & .curiosidades_grid{
-
-                display: grid;
-                flex-wrap: wrap;
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-
-                padding: 1rem 0;
-                
-                & .curiosidades_content{
-
-                 padding: 1rem 0;
-
-                    & img {
-
-                     border-radius: var(--r-sm);
-                     
-
-                    }
-
-                }
-            }
-        }
-
-
-
-}
-/* Curiosidades */
-
-/* Contacto */
-
-.contacto{
-
-    & .contacto__block{
+/* Bloque: Sección de contacto, formulario y mapa */
+.contacto {
+    & .contacto__block {
         flex-wrap: wrap;
 
-        & .contacto__map{
+        & .contacto__map {
             flex: 1 0 350px;
         }
 
-        & .contacto__form{
+        & .contacto__form {
             flex: 1 0 350px;
 
-            & form{
+            & form {
                 display: flex;
                 flex-direction: column;
                 gap: var(--s-xs);
 
-                & label{
-                    display: none;
-                }
-
-                & span{
-
-                    font: var(--f-body);
-                }
-
-                & .flex-row{
-
-                    padding: 0;
-                }
+                & label { display: none; }
+                & span { font: var(--f-body); }
+                & .flex-row { padding: 0; }
             }
         }
     }
 }
 
-/* Contacto*/
+/* Bloque: Submenú de navegación para escuelas */
+.submenu-escuelas {
+    padding: var(--s-md) 0;
+    border-bottom: 1px solid var(--c-light);
+    margin-bottom: var(--s-lg);
 
+    & ul {
+        display: flex;
+        justify-content: center;
+        gap: var(--s-md);
+    }
 
+    & .link.active {
+        color: var(--c-light);
+        border-bottom: 2px solid var(--c-light);
+        font-weight: bold;
+    }
+}
 
+/* Bloque: Curiosidades y cuadrícula de imágenes */
+.curiosidades_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--s-md);
+    padding: var(--s-md) 0;
+}
 
+.curiosidades_content img {
+    max-height: 120px;
+    object-fit: contain;
+    box-shadow: none;
+}
+
+/* Elemento: Destacado de curiosidad con borde lateral */
+.curiosidad-highlight {
+    background-color: var(--c-primary);
+    padding: var(--s-md);
+    border-left: 5px solid var(--c-light);
+    border-radius: var(--r-sm);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+
+    & h3 {
+        color: var(--c-light);
+        margin-bottom: var(--s-xs);
+        text-transform: uppercase;
+    }
+}
+
+/* Bloque: Página de curiosidades con diseño limpio */
+.curiosidades_grid_limpo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding-top: 2rem;
+}
+
+.curiosidad_item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+
+    & img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: var(--r-sm);
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+
+    & h2 {
+        color: var(--c-light);
+        margin-top: 0.5rem;
+    }
+
+    & p {
+        color: var(--c-text);
+        line-height: 1.6;
+    }
+}
+
+.btn-curiosidaes {
+    display: flex;
+    justify-content: center;
+    padding: var(--s-md) 0;  
+    width: 100%;
+}
+
+/* Bloque: Footer */
 footer {
     background-color: #FFF5D4;
     display: flex;
@@ -412,25 +378,106 @@ footer {
     align-items: center;
 
     & .logo {
-
         max-width: 12.5rem; 
-        
     }
+
     & nav {
-        
-        
-        
         & ul {
             display: flex;
-            gap: var(--s-md) ;
-            
-
-            
-
-            
+            gap: var(--s-md);
         }
     }
- }
+}
 
+/* --- ESTADOS DE ANIMACIÓN (CONTROLADOS POR JS) --- */
 
+/* Elemento: Estado inicial oculto para animaciones de entrada */
+.school__img, .school__content {
+    opacity: 0;
+    transition: all 1.2s ease-out;
+}
 
+/* Bloque: Desplazamiento lateral para elementos de escuela */
+.school__block.flex-row {
+    & .school__img:first-child,
+    & .school__content:first-child {
+        transform: translateX(-100px);
+    }
+
+    & .school__img:last-child,
+    & .school__content:last-child {
+        transform: translateX(100px);
+    }
+}
+
+/* Clase activa: Revela los elementos animados */
+.mostrar-elemento {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* --- ESTILOS DEL MENÚ HAMBURGUESA --- */
+
+/* /* Elemento: Botón con las tres líneas (hamburguesa) */ */
+.menu-hamburguesa {
+    display: none; 
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    & .bar {
+        width: 30px;
+        height: 3px;
+        background-color: var(--c-light);
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+}
+
+/* --- RESPONSIVIDAD (Móviles) --- */
+@media (max-width: 768px) {
+    
+    header {
+        position: relative;
+        padding: var(--s-sm) var(--s-md);
+
+        & .menu-hamburguesa {
+            display: flex; /* Aparece solo en pantallas pequeñas */
+        }
+
+        & .nav-menu {
+            display: none; /* Escondemos el menú de lista */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #FFF5D4;
+            padding: var(--s-md);
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+
+            & ul {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--s-md);
+            }
+
+            /* /* Clase activa que se añadirá con JavaScript */ */
+            &.is-active {
+                display: block;
+            }
+        }
+    }
+
+    /* /* Ajuste de los bloques flex para que se apilen verticalmente */ */
+    .flex-row {
+        flex-direction: column !important;
+    }
+
+    .school__block .school__img, 
+    .school__block .school__content {
+        flex: 1 0 100% !important;
+    }
+}
